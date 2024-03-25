@@ -4,7 +4,7 @@ import { DeleteJson } from "./DeletJson";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
-import { EditDelteBtn } from "./EditDeleteBtn";
+import { SelectedUser } from "./SelectedUser";
 
 interface User {
   id: number;
@@ -84,7 +84,7 @@ export function ShowJson() {
                   const selectedUserIdEdit = parseInt(
                     selectedUserId.toString() + "1"
                   );
-                  EditDelteBtn(selectedUserIdEdit);
+                  SelectedUser(selectedUserIdEdit);
                   setSelectedUserId(null);
                 }}
               >
@@ -98,7 +98,7 @@ export function ShowJson() {
                   const selectedUserIdEdit = parseInt(
                     selectedUserId.toString() + "0"
                   );
-                  EditDelteBtn(selectedUserIdEdit);
+                  SelectedUser(selectedUserIdEdit);
                   setSelectedUserId(null);
                 }}
               >
