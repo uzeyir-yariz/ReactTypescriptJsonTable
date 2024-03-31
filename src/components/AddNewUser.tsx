@@ -3,8 +3,8 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
 export function AddNewUser({
-  show,
-  onHide,
+  
+  onHide,show,
 }: {
   show: boolean;
   onHide: () => void;

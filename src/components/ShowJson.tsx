@@ -4,7 +4,7 @@ import { DeleteJson } from "./DeletJson";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
-import { SelectedUser } from "./SelectedUser";
+import { SelectedUser, SelectedUserModal } from "./SelectedUser";
 
 interface User {
   id: number;
@@ -81,11 +81,11 @@ export function ShowJson() {
                 className="mr-2"
                 onClick={() => {
                   // Edit action
+                  setSelectedUserId(null);
                   const selectedUserIdEdit = parseInt(
                     selectedUserId.toString() + "1"
                   );
                   SelectedUser(selectedUserIdEdit);
-                  setSelectedUserId(null);
                 }}
               >
                 Edit
@@ -99,7 +99,6 @@ export function ShowJson() {
                     selectedUserId.toString() + "0"
                   );
                   SelectedUser(selectedUserIdEdit);
-                  setSelectedUserId(null);
                 }}
               >
                 Delete
@@ -118,11 +117,11 @@ export function ShowJson() {
       </Modal>
 
       <div className="p-3">
-        <Button onClick={handleShowModal} className="w-100">Add New User</Button>
-        <AddNewUser
-          show={showModal}
-          onHide={handleHideModal}
-        />
+        <Button onClick={handleShowModal} className="w-100">
+          Add New User
+        </Button>
+        <AddNewUser show={showModal} onHide={handleHideModal} />
+        <SelectedUserModal content={"hello"} ID={-1} show={false} />
         <DeleteJson />
       </div>
     </>
