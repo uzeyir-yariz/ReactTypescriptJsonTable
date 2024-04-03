@@ -1,8 +1,6 @@
-import { ShowJson } from "./components/ShowJson";
-
 function App() {
   return <>
-    <ShowJson/>
+    <h1>yeniden yapılandırma</h1>
   </>;
 }
 
