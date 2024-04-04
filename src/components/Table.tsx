@@ -1,4 +1,13 @@
-import { Users } from "./Demo";
+import { Users } from "./PullUsers";
+
+interface User {
+  id: number;
+  first_name: string;
+  last_name: string;
+  ip_address: string;
+  gender: string;
+  email: string;
+}
 
 export function Table() {
   return (
@@ -15,26 +24,16 @@ export function Table() {
           </tr>
         </thead>
         <tbody>
-            // TODO: #9 buradaki yazıları İnterface haline getir bu sayede daha düzenli durur
-          {Users.map(
-            (user: {
-              id: number;
-              first_name: string;
-              last_name: string;
-              ip_address: string;
-              gender: string;
-              email: string;
-            }) => (
-              <tr key={user.id}>
-                <td> {user.id} </td>
-                <td> {user.first_name} </td>
-                <td> {user.last_name} </td>
-                <td> {user.email} </td>
-                <td> {user.gender} </td>
-                <td> {user.ip_address} </td>
-              </tr>
-            )
-          )}
+          {Users.map((user: User) => (
+            <tr key={user.id} style={{ cursor: "pointer" }}>
+              <td> {user.id} </td>
+              <td> {user.first_name} </td>
+              <td> {user.last_name} </td>
+              <td> {user.email} </td>
+              <td> {user.gender} </td>
+              <td> {user.ip_address} </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </>
