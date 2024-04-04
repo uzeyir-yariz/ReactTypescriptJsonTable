@@ -1,3 +1,3 @@
-export function ServiceDelteUser() {
+export function ServiceDeleteUser() {
   return;
 }
