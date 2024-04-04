@@ -24,16 +24,31 @@ export function Table() {
           </tr>
         </thead>
         <tbody>
-          {Users.map((user: User) => (
-            <tr key={user.id} style={{ cursor: "pointer" }}>
-              <td> {user.id} </td>
-              <td> {user.first_name} </td>
-              <td> {user.last_name} </td>
-              <td> {user.email} </td>
-              <td> {user.gender} </td>
-              <td> {user.ip_address} </td>
+          {Users ? (
+            Users.map((user: User) => (
+              <tr
+                key={user.id}
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  alert(user.id);
+                }}
+              >
+                <td> {user.id} </td>
+                <td> {user.first_name} </td>
+                <td> {user.last_name} </td>
+                <td> {user.email} </td>
+                <td> {user.gender} </td>
+                <td> {user.ip_address} </td>
+              </tr>
+            ))
+          ) : (
+            <tr
+              className="text-center fst-italic"
+              style={{ cursor: "pointer" }}
+            >
+              <td colSpan={6}>Hiç Kullanıcı Yok</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </>
