@@ -30,10 +30,13 @@ export function Table() {
                 key={user.id}
                 style={{ cursor: "pointer" }}
                 onClick={() => {
-                  alert(user.id);
+                  alert("hello world");
+
+                  // buraya tıklanıldığında burada bir Modal açılacak ve şöyle demesi gerekicek 
+                  // güncelle, sil iptal seöçenekleri olacak
                 }}
               >
-                <td> {user.id} </td>
+                <td> {user.id}</td>
                 <td> {user.first_name} </td>
                 <td> {user.last_name} </td>
                 <td> {user.email} </td>
