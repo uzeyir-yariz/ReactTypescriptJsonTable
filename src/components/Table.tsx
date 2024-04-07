@@ -1,8 +1,7 @@
 import { Button, Modal } from "react-bootstrap";
 import { Users } from "./PullUsers";
-import React from "react";
+import { useState } from "react";
 import { ServiceDeleteUser } from "./Service/ServiceDeleteUser";
-import { ServiceEditUser } from "./Service/ServiceEditUser";
 interface User {
   id: number;
   first_name: string;
@@ -12,11 +11,15 @@ interface User {
   email: string;
 }
 
-export function Table() {
-  const [show, setShow] = React.useState(false);
-  const [selectedUserId, setSelectedUserId] = React.useState<number | null>(
-    null
-  );
+interface TableProps {
+  onEditClick: (ID: number) => void;
+}
+
+export function Table({ onEditClick }: TableProps) {
+  const [show, setShow] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
+  // * 16, 17'de React.usestate(false); silindi eğer sorun olursa bundandır
+
   const handleClose = () => setShow(false);
   const handleShow = (ID: number) => {
     setSelectedUserId(ID);
@@ -76,7 +79,7 @@ export function Table() {
             onClick={() => {
               if (selectedUserId !== null) {
                 const ID = selectedUserId;
-                ServiceEditUser(ID);
+                onEditClick(ID);
                 handleClose();
               }
             }}
@@ -88,7 +91,8 @@ export function Table() {
             type="button"
             className="mt-4 w-25"
             onClick={() => {
-              if (selectedUserId !== null) { // ! burayı bir daha silme
+              if (selectedUserId !== null) {
+                // ! burayı bir daha silme
                 const ID = selectedUserId;
                 ServiceDeleteUser(ID);
                 handleClose();
