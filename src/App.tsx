@@ -10,7 +10,12 @@ export default function App() {
 
   const handleEditClick = (ID: number) => {
     setSelectedUserId(ID);
+    console.log(ID)
     setShowEditForm(true);
+  };
+
+  const handleCloseForm = () => {
+    setShowEditForm(false);
   };
 
   return (
@@ -19,7 +24,7 @@ export default function App() {
       <ServiceAddUser />
       <ServiceDeleteAll />
       {showEditForm && (
-        <ServiceEditUser userId={selectedUserId || 0}/>
+        <ServiceEditUser ID={selectedUserId} onClose={handleCloseForm} />
       )}
     </>
   );

@@ -78,7 +78,7 @@ export function Table({ onEditClick }: TableProps) {
             className="mt-4 w-25"
             onClick={() => {
               if (selectedUserId !== null) {
-                const ID = selectedUserId;
+                const ID: number | null = selectedUserId;
                 onEditClick(ID);
                 handleClose();
               }
