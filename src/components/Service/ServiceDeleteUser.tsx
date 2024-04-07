@@ -9,9 +9,9 @@ interface User {
   email: string;
 }
 
-export function ServiceDeleteUser(selectedUserId: number) {
+export function ServiceDeleteUser(ID: number) {
   if (Users) {
-    const selectUser = Users.find((user: User) => user.id === selectedUserId);
+    const selectUser = Users.find((user: User) => user.id === ID);
     if (selectUser) {
       const confirmation = window.confirm(
         `Bu ${selectUser.first_name}, ${selectUser.last_name} silmek istediğinize emin misiniz ?`
@@ -19,7 +19,7 @@ export function ServiceDeleteUser(selectedUserId: number) {
       if (confirmation) {
         // burada silme işlemi gerçekeleşecektir
         const filtredUser = Users.filter(
-          (user: User) => user.id !== selectedUserId
+          (user: User) => user.id !== ID
         );
         localStorage.setItem("users", JSON.stringify(filtredUser));
         window.location.reload();
@@ -29,6 +29,6 @@ export function ServiceDeleteUser(selectedUserId: number) {
     }
   }
 
-  console.log(selectedUserId);
+  console.log(ID);
   return;
 }

@@ -2,7 +2,7 @@ import { Button, Modal } from "react-bootstrap";
 import { Users } from "./PullUsers";
 import React from "react";
 import { ServiceDeleteUser } from "./Service/ServiceDeleteUser";
-
+import { ServiceEditUser } from "./Service/ServiceEditUser";
 interface User {
   id: number;
   first_name: string;
@@ -76,7 +76,7 @@ export function Table() {
             onClick={() => {
               if (selectedUserId !== null) {
                 const ID = selectedUserId;
-                ID; // ! edit kısmı geçici süreliğine iptal edilmiştir
+                ServiceEditUser(ID);
                 handleClose();
               }
             }}
@@ -88,9 +88,9 @@ export function Table() {
             type="button"
             className="mt-4 w-25"
             onClick={() => {
-              if (selectedUserId !== null) {
+              if (selectedUserId !== null) { // ! burayı bir daha silme
                 const ID = selectedUserId;
-                ServiceDeleteUser(ID)
+                ServiceDeleteUser(ID);
                 handleClose();
               }
             }}
