@@ -1,4 +1,7 @@
+import { Button, Modal } from "react-bootstrap";
 import { Users } from "./PullUsers";
+import React from "react";
+import { ServiceDeleteUser } from "./Service/ServiceDeleteUser";
 
 interface User {
   id: number;
@@ -10,6 +13,16 @@ interface User {
 }
 
 export function Table() {
+  const [show, setShow] = React.useState(false);
+  const [selectedUserId, setSelectedUserId] = React.useState<number | null>(
+    null
+  );
+  const handleClose = () => setShow(false);
+  const handleShow = (ID: number) => {
+    setSelectedUserId(ID);
+    setShow(true);
+  };
+
   return (
     <>
       <table className="table table-dark table-striped table-hover">
@@ -30,10 +43,7 @@ export function Table() {
                 key={user.id}
                 style={{ cursor: "pointer" }}
                 onClick={() => {
-                  alert("hello world");
-
-                  // buraya tıklanıldığında burada bir Modal açılacak ve şöyle demesi gerekicek 
-                  // güncelle, sil iptal seöçenekleri olacak
+                  handleShow(user.id);
                 }}
               >
                 <td> {user.id}</td>
@@ -54,6 +64,49 @@ export function Table() {
           )}
         </tbody>
       </table>
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header className="bg-dark">
+          <Modal.Title>Kullanıcıyı Düzenle / Sil</Modal.Title>
+        </Modal.Header>
+        <Modal.Footer className="bg-dark">
+          <Button
+            variant="primary"
+            type="button"
+            className="mt-4 w-25"
+            onClick={() => {
+              if (selectedUserId !== null) {
+                const ID = selectedUserId;
+                ID; // ! edit kısmı geçici süreliğine iptal edilmiştir
+                handleClose();
+              }
+            }}
+          >
+            Düzenle
+          </Button>
+          <Button
+            variant="danger"
+            type="button"
+            className="mt-4 w-25"
+            onClick={() => {
+              if (selectedUserId !== null) {
+                const ID = selectedUserId;
+                ServiceDeleteUser(ID)
+                handleClose();
+              }
+            }}
+          >
+            Kullanıcıyı Sil
+          </Button>
+          <Button
+            variant="secondary"
+            type="button"
+            className="mt-4 w-25"
+            onClick={handleClose}
+          >
+            İptal
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
