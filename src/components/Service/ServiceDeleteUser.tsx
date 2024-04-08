@@ -18,9 +18,7 @@ export function ServiceDeleteUser(ID: number) {
       );
       if (confirmation) {
         // burada silme işlemi gerçekeleşecektir
-        const filtredUser = Users.filter(
-          (user: User) => user.id !== ID
-        );
+        const filtredUser = Users.filter((user: User) => user.id !== ID);
         localStorage.setItem("users", JSON.stringify(filtredUser));
         window.location.reload();
       } else {

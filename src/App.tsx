@@ -10,7 +10,6 @@ export default function App() {
 
   const handleEditClick = (ID: number) => {
     setSelectedUserId(ID);
-    console.log(ID)
     setShowEditForm(true);
   };
 
@@ -21,11 +20,13 @@ export default function App() {
   return (
     <>
       <Table onEditClick={handleEditClick} />
-      <ServiceAddUser />
-      <ServiceDeleteAll />
-      {showEditForm && (
-        <ServiceEditUser ID={selectedUserId} onClose={handleCloseForm} />
-      )}
+      <div className="p-4">
+        <ServiceAddUser />
+        <ServiceDeleteAll />
+        {showEditForm && (
+          <ServiceEditUser ID={selectedUserId} onClose={handleCloseForm} />
+        )}
+      </div>
     </>
   );
 }
